@@ -101,7 +101,7 @@ export default class SelectableSectionsListView extends Component {
     let y = 0;
     let headerHeight = this.props.headerHeight || 0;
     y += headerHeight;
-    
+
     if(this.props.contentInset) {
         y -= this.props.contentInset.top - headerHeight
     }
@@ -233,6 +233,12 @@ export default class SelectableSectionsListView extends Component {
           getSectionListTitle={this.props.getSectionListTitle}
           component={this.props.sectionListItem}
           fontStyle={this.props.sectionListFontStyle}
+          wrapperStyle={this.props.sectionListWrapperStyle}
+          showLetter={this.props.showLetter}
+          letterLabelStyle={this.props.letterLabelStyle}
+          letterLabelFontStyle={this.props.letterLabelFontStyle}
+          mainColor={this.props.mainColor}
+          reversedColor={this.props.reversedColor}
         /> :
         null;
 
@@ -258,7 +264,7 @@ export default class SelectableSectionsListView extends Component {
       renderSectionHeader
     });
 
-    props.style = this.props.sectionListWrapperStyle;
+    props.style = void 0;
 
     return (
       <View ref="view" style={[styles.container, this.props.style]}>
@@ -403,4 +409,18 @@ SelectableSectionsListView.propTypes = {
    * Selector styles
    */
   sectionListFontStyle: stylesheetProp,
+
+  // TODO: Add description to new props
+  showLetter: PropTypes.bool,
+  letterLabelStyle: stylesheetProp,
+  letterLabelFontStyle: stylesheetProp,
+  mainColor: PropTypes.string,
+  reversedColor: PropTypes.string,
+};
+
+SectionList.defaultProps = {
+  letterLabelStyle: {},
+  letterLabelFontStyle: {},
+  mainColor: '#008fff',
+  reversedColor: 'white',
 };

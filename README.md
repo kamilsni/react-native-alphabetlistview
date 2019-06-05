@@ -286,9 +286,16 @@ class MyComponent extends Component {
         sectionListItem={SectionItem}
         sectionHeader={SectionHeader}
         sectionHeaderHeight={22.5}
+        showLetter
       />
     );
   }
 }
 
 ```
+
+# TODO:
+
+- [ ] Add descriptions for new props
+- [ ] Update example
+- [ ] Update gif preview
