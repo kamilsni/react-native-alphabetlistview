@@ -258,7 +258,7 @@ export default class SelectableSectionsListView extends Component {
       renderSectionHeader
     });
 
-    props.style = void 0;
+    props.style = this.props.sectionListWrapperStyle;
 
     return (
       <View ref="view" style={[styles.container, this.props.style]}>
