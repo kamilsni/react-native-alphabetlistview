@@ -239,6 +239,7 @@ export default class SelectableSectionsListView extends Component {
           letterLabelFontStyle={this.props.letterLabelFontStyle}
           mainColor={this.props.mainColor}
           reversedColor={this.props.reversedColor}
+          renderLetterLabelText={this.props.renderLetterLabelText}
         /> :
         null;
 
@@ -416,6 +417,7 @@ SelectableSectionsListView.propTypes = {
   letterLabelFontStyle: stylesheetProp,
   mainColor: PropTypes.string,
   reversedColor: PropTypes.string,
+  renderLetterLabelText: PropTypes.func,
 };
 
 SectionList.defaultProps = {
