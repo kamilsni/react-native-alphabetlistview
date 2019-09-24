@@ -4,12 +4,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactNative, {
-  ListView,
+  // ListView,
   StyleSheet,
   View,
   NativeModules,
 } from 'react-native';
 import merge from 'merge';
+
+// TEMP:
+// TODO: Migrate from old ListView
+import ListView from 'deprecated-react-native-listview';
 
 import SectionHeader from './SectionHeader';
 import SectionList from './SectionList';
