@@ -6,10 +6,7 @@ import ReactNative, {
   StyleSheet,
   View,
   Text,
-  NativeModules,
 } from 'react-native';
-
-const { UIManager } = NativeModules;
 
 const noop = () => {};
 const returnTrue = () => true;
@@ -109,7 +106,7 @@ export default class SectionList extends Component {
     this.measureTimer && clearTimeout(this.measureTimer);
   }
 
-  getLetterLabel() {
+  renderLetterLabel() {
     if (!this.props.showLetter || this.lastSelectedIndex === null) {
       return null;
     }
@@ -153,36 +150,43 @@ export default class SectionList extends Component {
     );
   }
 
-  render() {
+  renderSections() {
     const SectionComponent = this.props.component;
-    const sections = this.props.sections.map((section, index) => {
-      const title = this.props.getSectionListTitle ?
-        this.props.getSectionListTitle(section) :
-        section;
 
-      const textStyle = this.props.data[section].length ?
-        styles.text :
-        styles.inactivetext;
+    return (
+      <React.Fragment>
+        {
+          this.props.sections.map((section, index) => {
+            const title = this.props.getSectionListTitle ?
+              this.props.getSectionListTitle(section) :
+              section;
 
-      const child = SectionComponent ?
-        <SectionComponent
-          sectionId={section}
-          title={title}
-        /> :
-        <View
-          style={styles.item}>
-          <Text style={[textStyle, { color: this.props.mainColor }, this.props.fontStyle]}>{title}</Text>
-        </View>;
+            const textStyle = this.props.data[section].length ?
+              styles.text :
+              styles.inactivetext;
 
-      return (
-        <View key={index} ref={'sectionItem' + index} pointerEvents="none">
-          {child}
-        </View>
-      );
-    });
+            const child = SectionComponent ?
+              <SectionComponent
+                sectionId={section}
+                title={title}
+              /> :
+              <View
+                style={styles.item}>
+                <Text style={[textStyle, { color: this.props.mainColor }, this.props.fontStyle]}>{title}</Text>
+              </View>;
 
-    const letterLabel = this.getLetterLabel();
+            return (
+              <View key={index} ref={'sectionItem' + index} pointerEvents="none">
+                {child}
+              </View>
+            );
+          })
+        }
+      </React.Fragment>
+    )
+  }
 
+  render() {
     return (
       <View style={[styles.wrapper, this.props.wrapperStyle]}>
         <View ref="view" style={[styles.container, this.props.style]}
@@ -192,8 +196,8 @@ export default class SectionList extends Component {
           onResponderMove={this.detectAndScrollToSection}
           onResponderRelease={this.resetSection}
         >
-          {letterLabel}
-          {sections}
+          {this.renderLetterLabel()}
+          {this.renderSections()}
         </View>
       </View>
     );
