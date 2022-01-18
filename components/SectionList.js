@@ -22,8 +22,7 @@ export default class SectionList extends Component {
     this.onSectionSelect = this.onSectionSelect.bind(this);
     this.resetSection = this.resetSection.bind(this);
     this.detectAndScrollToSection = this.detectAndScrollToSection.bind(this);
-    // this.lastSelectedIndex = null;
-    let this_lastSelectedIndex = null;
+    let lastSelectedIndex = null;
 
     Object.defineProperty(this, 'lastSelectedIndex', {
       set(val) {
@@ -34,10 +33,10 @@ export default class SectionList extends Component {
         }
 
         this.setState(nextState);
-        this_lastSelectedIndex = val;
+        lastSelectedIndex = val;
       },
       get() {
-        return this_lastSelectedIndex;
+        return lastSelectedIndex;
       }
     });
 
@@ -61,25 +60,10 @@ export default class SectionList extends Component {
 
   detectAndScrollToSection({ nativeEvent }) {
     const ev = nativeEvent.touches[0];
-    // console.debug({ ...ev }, { ...this.measure });
-    //var rect = {width:1, height:1, x: ev.locationX, y: ev.locationY};
-    //var rect = [ev.locationX, ev.locationY];
-
-    //UIManager.measureViewsInRect(rect, e.target, noop, (frames) => {
-    //  if (frames.length) {
-    //    var index = frames[0].index;
-    //    if (this.lastSelectedIndex !== index) {
-    //      this.lastSelectedIndex = index;
-    //      this.onSectionSelect(this.props.sections[index], true);
-    //    }
-    //  }
-    //});
-    //UIManager.findSubviewIn(e.target, rect, viewTag => {
-      //this.onSectionSelect(view, true);
-    //})
     const { y, width, height } = this.measure;
     const targetY = ev.pageY - y;
     const index = (Math.floor(targetY / height));
+
     if (index >= this.props.sections.length || index < 0) {
       return;
     }
@@ -96,12 +80,13 @@ export default class SectionList extends Component {
 
   fixSectionItemMeasure() {
     const sectionItem = this.refs.sectionItem0;
+
     if (!sectionItem) {
       return;
     }
+
     this.measureTimer = setTimeout(() => {
       sectionItem.measure((x, y, width, height, pageX, pageY) => {
-        //console.log([x, y, width, height, pageX, pageY]);
         this.measure = {
           y: pageY,
           width,
@@ -189,22 +174,11 @@ export default class SectionList extends Component {
           <Text style={[textStyle, { color: this.props.mainColor }, this.props.fontStyle]}>{title}</Text>
         </View>;
 
-      //if(index){
-        return (
-          <View key={index} ref={'sectionItem' + index} pointerEvents="none">
-            {child}
-          </View>
-        );
-      //}
-      //else{
-      //  return (
-      //    <View key={index} ref={'sectionItem' + index} pointerEvents="none"
-      //          onLayout={e => {console.log(e.nativeEvent.layout)}}>
-      //      {child}
-      //    </View>
-      //  );
-      //
-      //}
+      return (
+        <View key={index} ref={'sectionItem' + index} pointerEvents="none">
+          {child}
+        </View>
+      );
     });
 
     const letterLabel = this.getLetterLabel();
