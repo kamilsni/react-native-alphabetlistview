@@ -1,20 +1,20 @@
 ## Improved functionality
 
-## Based on johanneslumpe's react-native-selectablesectionlistview, thanks to him for the awesome component!      
-99% of this component was done by @johanneslumpe, and I just replaced the deprecated API for newer react native version(>=0.13), and used a little trick to support both iOS and Android platforms.      
-    
-    
-You can find this component on npm:   
+## Based on johanneslumpe's react-native-selectablesectionlistview, thanks to him for the awesome component!
+99% of this component was done by @johanneslumpe, and I just replaced the deprecated API for newer react native version(>=0.13), and used a little trick to support both iOS and Android platforms.
+
+
+You can find this component on npm:
 ```
-npm install react-native-alphabetlistview  --save  
+npm install react-native-alphabetlistview  --save
 ```
 
 ## Changelog
 
-- **v2.0.0**  
+- **v2.0.0**
   + Support RN 0.25+.(Thanks [@mbernardeau](https://github.com/mbernardeau)). If you have problem with an earlier version of RN, try v0.1.3.
-    
-    
+
+
 
 
 # Following is the original readme
@@ -58,98 +58,122 @@ All props are passed through to the underlying `ListView`, so you can specify al
 * `renderSectionHeader`
 
 #### data
-`array|object`, **required**  
+`array|object`, **required**
 The data to render in the listview
 
 #### hideSectionList
-`boolean`  
+`boolean`
 Whether to show the section listing or not. *Note: If the data your are providing to
 the component is an array, the section list will automatically be hidden.*
 
 #### getSectionTitle
-`function`  
+`function`
 Function to provide titles for the section headers
 
 #### getSectionListTitle
-`function`  
+`function`
 Function to provide titles for the section list items
 
 #### onCellSelect
-`function`  
+`function`
 Callback which should be called when a cell has been selected
 
 #### onScrollToSection
-`function`  
+`function`
 Callback which should be called when the user scrolls to a section
 
 #### cell
-`function` **required**  
+`function` **required**
 The cell component to render for each row
 
 #### sectionListItem
-`function`  
+`function`
 A custom component to render for each section list item
 
 #### sectionHeader
-`function`  
+`function`
 A custom component to render for each section header
 
 #### footer
-`function`  
-A custom component to render as footer  
+`function`
+A custom component to render as footer
 **This props takes precedence over `renderFooter`**
 
 #### renderFooter
-`function`  
+`function`
 A custom function which has to return a valid React element, which will be
 used as footer.
 
 #### header
-`function`  
-A custom component to render as header  
+`function`
+A custom component to render as header
 **This props takes precedence over `renderHeader`**
 
 #### renderHeader
-`function`  
+`function`
 A custom function which has to return a valid React element, which will be used as header.
 
 #### headerHeight
-`number`  
-The height of the rendered header element.  
+`number`
+The height of the rendered header element.
 **Is required if a header element is used, so the positions can be calculated correctly**
 
 #### cellProps
-`object`  
+`object`
 An object containing additional props, which will be passed to each cell component
 
 #### sectionHeaderHeight
-`number` **required**  
+`number` **required**
 The height of the section header component
 
 #### cellHeight
-`number` **required**  
+`number` **required**
 The height of the cell component
 
 #### useDynamicHeights
-`boolean`  
-Whether to determine the y position to scroll to by calculating header and cell heights or by using the UIManager to measure the position of the destination element. Defaults to `false`  
+`boolean`
+Whether to determine the y position to scroll to by calculating header and cell heights or by using the UIManager to measure the position of the destination element. Defaults to `false`
 **This is an experimental feature. For it to work properly you will most likely have to experiment with different values for `scrollRenderAheadDistance`, depending on the size of your data set.**
 
 #### updateScrollState
-`boolean`  
+`boolean`
 Whether to set the current y offset as state and pass it to each cell during re-rendering
 
 #### style
-`object|number`  
+`object|number`
 Styles to pass to the container
 
 #### sectionListStyle
-`object|number`  
+`object|number`
 Styles to pass to the section list container
 
 #### sectionListFontStyle
-`object|number`  
+`object|number`
 Styles to pass to the section list letters
+
+#### showLetter
+`boolean`
+Whether to show letter label
+
+#### letterLabelStyle
+`object|number`
+The letter label styles
+
+#### letterLabelFontStyle
+`object|number`
+The letter label text styles
+
+#### mainColor
+`string`
+The color of the section list letters and the letter label background
+
+#### reversedColor
+`string`
+The color of the letter label text
+
+#### renderLetterLabelText
+`function`
+A custom function to render as letter label text
 
 ---
 ### Cell component
@@ -157,32 +181,32 @@ Styles to pass to the section list letters
 These props are automatically passed to your component. In addition to these, your cell will receive all props which you specified in the object you passed as `cellProps` prop to the listview.
 
 #### index
-`number`  
+`number`
 The index of the cell inside the current section
 
 #### sectionId
-`string`  
+`string`
 The id of the parent section
 
 #### isFirst
-`boolean`  
+`boolean`
 Whether the cell is the first in the section
 
 #### isLast
-`boolean`  
+`boolean`
 Whether the cell is the last in the section
 
 #### item
-`mixed`  
+`mixed`
 The item to render
 
 #### offsetY
-`number`  
-The current y offset of the list view  
+`number`
+The current y offset of the list view
 **If you do not specify `updateScrollState={true}` for the list component, this props will always be 0**
 
 #### onSelect
-`function`  
+`function`
 The function which should be called when a cell is being selected
 
 ---
@@ -191,11 +215,11 @@ The function which should be called when a cell is being selected
 These props are automatically passed to your component
 
 #### sectionId
-`string`  
+`string`
 The id of the parent section
 
 #### title
-`string`  
+`string`
 The title for this section. Either the return value of `getSectionListTitle` or the same value as `sectionId`
 
 ## Example
@@ -296,6 +320,6 @@ class MyComponent extends Component {
 
 # TODO:
 
-- [ ] Add descriptions for new props
+- [x] Add descriptions for new props
 - [ ] Update example
 - [ ] Update gif preview

@@ -242,7 +242,10 @@ SectionList.propTypes = {
     PropTypes.object,
   ]),
 
-  // TODO: Add description to new props
+  /**
+   * For documentation of the following props, please refer to
+   * SelectableSectionsListView.propTypes
+   */
   showLetter: PropTypes.bool,
   letterLabelStyle: PropTypes.any,
   letterLabelFontStyle: PropTypes.any,

@@ -395,12 +395,34 @@ SelectableSectionsListView.propTypes = {
    */
   sectionListFontStyle: stylesheetProp,
 
-  // TODO: Add description to new props
+  /**
+   * Whether to show letter label
+   */
   showLetter: PropTypes.bool,
+
+  /**
+   * The letter label styles
+   */
   letterLabelStyle: stylesheetProp,
+
+  /**
+   * The letter label text styles
+   */
   letterLabelFontStyle: stylesheetProp,
+
+  /**
+   * The color of the section list letters and the letter label background
+   */
   mainColor: PropTypes.string,
+
+  /**
+   * The color of the letter label text
+   */
   reversedColor: PropTypes.string,
+
+  /**
+   * A custom function to render as letter label text
+   */
   renderLetterLabelText: PropTypes.func,
 };
 
@@ -408,5 +430,5 @@ SectionList.defaultProps = {
   letterLabelStyle: {},
   letterLabelFontStyle: {},
   mainColor: '#008fff',
-  reversedColor: 'white',
+  reversedColor: '#ffffff',
 };
