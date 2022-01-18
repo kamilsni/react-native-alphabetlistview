@@ -59,8 +59,9 @@ export default class SectionList extends Component {
     this.lastSelectedIndex = null;
   }
 
-  detectAndScrollToSection(e) {
-    const ev = e.nativeEvent.touches[0];
+  detectAndScrollToSection({ nativeEvent }) {
+    const ev = nativeEvent.touches[0];
+    // console.debug({ ...ev }, { ...this.measure });
     //var rect = {width:1, height:1, x: ev.locationX, y: ev.locationY};
     //var rect = [ev.locationX, ev.locationY];
 
@@ -76,9 +77,9 @@ export default class SectionList extends Component {
     //UIManager.findSubviewIn(e.target, rect, viewTag => {
       //this.onSectionSelect(view, true);
     //})
-    const targetY = ev.pageY;
     const { y, width, height } = this.measure;
-    const index = (Math.floor(ev.locationY / height));
+    const targetY = ev.pageY - y;
+    const index = (Math.floor(targetY / height));
     if (index >= this.props.sections.length || index < 0) {
       return;
     }
@@ -89,7 +90,7 @@ export default class SectionList extends Component {
     }
 
     this.setState({
-      evtY: Math.round(ev.locationY),
+      evtY: Math.round(targetY),
     });
   }
 
@@ -124,7 +125,7 @@ export default class SectionList extends Component {
   }
 
   getLetterLabel() {
-    if (!this.props.showLetter || !this.lastSelectedIndex) {
+    if (!this.props.showLetter || this.lastSelectedIndex === null) {
       return null;
     }
 
