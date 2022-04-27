@@ -133,7 +133,7 @@ export default class SectionList extends Component {
 
     return (
       <View style={labelStyle}>
-        <Text style={textStyle}>{this.renderLetterLabelText()}</Text>
+        <Text style={textStyle} {...this.props.letterLabelTextProps}>{this.renderLetterLabelText()}</Text>
       </View>
     )
   }
@@ -172,7 +172,7 @@ export default class SectionList extends Component {
               /> :
               <View
                 style={styles.item}>
-                <Text style={[textStyle, { color: this.props.mainColor }, this.props.fontStyle]}>{title}</Text>
+                <Text style={[textStyle, { color: this.props.mainColor }, this.props.fontStyle]} {...this.props.azSideBarProps}>{title}</Text>
               </View>;
 
             return (
@@ -241,6 +241,18 @@ SectionList.propTypes = {
     PropTypes.number,
     PropTypes.object,
   ]),
+  
+  /**
+   * An object containing additional props, which will be passed
+   * to AZ sidebar letters.
+   */
+  azSideBarProps: PropTypes.object,
+  
+  /**
+   * An object containing additional props, which will be passed
+   * to AZ letter Label.
+   */
+  letterLabelTextProps: PropTypes.object,
 
   /**
    * For documentation of the following props, please refer to

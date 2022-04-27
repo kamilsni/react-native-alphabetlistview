@@ -224,6 +224,8 @@ export default class SelectableSectionsListView extends Component {
           mainColor={this.props.mainColor}
           reversedColor={this.props.reversedColor}
           renderLetterLabelText={this.props.renderLetterLabelText}
+          azSideBarProps={this.props.azSideBarProps}
+          letterLabelTextProps={this.props.letterLabelTextProps}
         /> :
         null;
 
@@ -424,6 +426,18 @@ SelectableSectionsListView.propTypes = {
    * A custom function to render as letter label text
    */
   renderLetterLabelText: PropTypes.func,
+  
+  /**
+   * An object containing additional props, which will be passed
+   * to AZ sidebar letters.
+   */
+  azSideBarProps: PropTypes.object,
+  
+  /**
+   * An object containing additional props, which will be passed
+   * to AZ letter Label.
+   */
+  letterLabelTextProps: PropTypes.object,
 };
 
 SectionList.defaultProps = {
