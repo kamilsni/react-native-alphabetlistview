@@ -61,11 +61,11 @@ export default class SectionList extends Component {
     const targetY = ev.pageY - y;
     const index = (Math.floor(targetY / height));
 
-    if (index >= this.props.sections.length || index < 0) {
+    if (index >= this.props.sections?.length || index < 0) {
       return;
     }
 
-    if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]].length) {
+    if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]]?.length) {
       this.lastSelectedIndex = index;
       this.onSectionSelect(this.props.sections[index], true);
     }
