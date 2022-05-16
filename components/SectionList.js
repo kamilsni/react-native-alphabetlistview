@@ -57,7 +57,7 @@ export default class SectionList extends Component {
 
   detectAndScrollToSection({ nativeEvent }) {
     const ev = nativeEvent.touches[0];
-    const { y, width, height } = this.measure;
+    const { y, width, height } = this?.measure;
     const targetY = ev.pageY - y;
     const index = (Math.floor(targetY / height));
 
