@@ -57,22 +57,27 @@ export default class SectionList extends Component {
 
   detectAndScrollToSection({ nativeEvent }) {
     const ev = nativeEvent.touches[0];
-    const { y, width, height } = this?.measure;
-    const targetY = ev.pageY - y;
-    const index = (Math.floor(targetY / height));
+    if(this.measure){
+      const { y, width, height } = this.measure;
+      const targetY = ev.pageY - y;
+      const index = (Math.floor(targetY / height));
 
-    if (index >= this.props.sections?.length || index < 0) {
-      return;
+      if (index >= this.props.sections?.length || index < 0) {
+        return;
+      }
+
+      if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]]?.length) {
+        this.lastSelectedIndex = index;
+        this.onSectionSelect(this.props.sections[index], true);
+      }
+
+      this.setState({
+        evtY: Math.round(targetY),
+      });
     }
-
-    if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]]?.length) {
-      this.lastSelectedIndex = index;
-      this.onSectionSelect(this.props.sections[index], true);
+    else{
+      return null;
     }
-
-    this.setState({
-      evtY: Math.round(targetY),
-    });
   }
 
   fixSectionItemMeasure() {
